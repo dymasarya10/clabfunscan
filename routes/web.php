@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AdminController::class, 'index'])->name('adm-dashboard');
+Route::get('/contents', [AdminController::class, 'allContent'])->name('adm-contents');

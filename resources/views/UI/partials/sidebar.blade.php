@@ -13,7 +13,7 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Dashboard
             </a>
-            <a class="nav-link py-2 {{ $title === 'content' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="index.html">
+            <a class="nav-link py-2 {{ $title === 'konten' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('adm-contents') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa-qrcode"></i></div>
                 Konten
             </a>

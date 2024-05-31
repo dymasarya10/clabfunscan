@@ -4,7 +4,7 @@
     <div class="col">
         <div class="bg-white rounded-4 AppShadow p-4 mb-3">
             <h5 class="mb-4">Data Konten</h5>
-            <a href="" class="btn btn-primary rounded-3 mb-4">
+            <a href="{{ route('createcontents') }}" class="btn btn-primary rounded-3 mb-4">
                 Tambah Data
             </a>
             <table id="datatablesSimple">

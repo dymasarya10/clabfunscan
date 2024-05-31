@@ -1,6 +1,6 @@
 <div class="container-fluid px-4">
     <div class="d-flex align-items-center justify-content-between small">
-        <div class="">Copyright &copy; Labjak 2024</div>
+        <div class="">Copyright &copy; {{ env('APP_NAME') }} 2024</div>
         <div class="">
             <a href="#" class="text-dark">Kebijakan Privasi</a>
             &middot;

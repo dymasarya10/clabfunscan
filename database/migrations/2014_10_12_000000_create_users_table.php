@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('password');
             $table->string('peran');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

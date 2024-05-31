@@ -4,16 +4,16 @@
             <div class="container-fluid d-flex">
                 <img src="{{ asset('myassets/img/LabJakAppsLogo.png') }}" alt="" class="img fluid" width="42rem">
                 <div class="container-fluid d-flex flex-column">
-                    <div class="fw-bold small">LabFunScan</div>
+                    <div class="fw-bold small">{{ env('APP_NAME') }}</div>
                     <div class="fw-light small">Dymas Arya</div>
                 </div>
             </div>
             <div class="sb-sidenav-menu-heading">menu utama</div>
-            <a class="nav-link py-2 {{ $title === 'dashboard' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('adm-dashboard') }}">
+            <a class="nav-link py-2 {{ $title === 'dashboard' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('dashboard') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Dashboard
             </a>
-            <a class="nav-link py-2 {{ $title === 'konten' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('adm-contents') }}">
+            <a class="nav-link py-2 {{ $title === 'konten' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('contents') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa-qrcode"></i></div>
                 Konten
             </a>

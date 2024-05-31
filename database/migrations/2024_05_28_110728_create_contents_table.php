@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('gambar');
             $table->text('isi_konten');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('teacher_id')->references('id')->on('teachers');

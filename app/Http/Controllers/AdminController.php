@@ -8,11 +8,13 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
-    public $dashboard = 'dashboard';
+    public $creator = 'creator';
+    public $edulevel = 'jenjang';
     public $content = 'konten';
     public $dangerous_tags;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->dangerous_tags = [
             '&lt;/script&gt;',
             '&lt;/iframe&gt;',
@@ -39,10 +41,36 @@ class AdminController extends Controller
 
     public function index()
     {
+        $users = [];
+        for ($i = 0; $i < 2; $i++) {
+            $users[] = [
+                'name' => fake()->name,
+                'email' => fake()->email,
+                'address' => fake()->address,
+                'nisn' => fake()->randomNumber(9, true),
+                'date' => fake()->date('Y/m/d'),
+            ];
+        }
         return view('UI.pages.admin.homepage', [
-            'title' => $this->dashboard,
-            'navigation' => [$this->dashboard, 'petunjuk umum']
+            'title' => $this->creator,
+            'navigation' => [$this->creator, 'data creator'],
+            'users' => $users
         ]);
+    }
+
+    public function eduLevel()
+    {
+        $users = [];
+        for ($i = 0; $i < 2; $i++) {
+            $users[] = [
+                'name' => fake()->name,
+                'email' => fake()->email,
+                'address' => fake()->address,
+                'nisn' => fake()->randomNumber(9, true),
+                'date' => fake()->date('Y/m/d'),
+            ];
+        }
+
     }
 
     public function allContent()
@@ -67,9 +95,9 @@ class AdminController extends Controller
 
     public function createContent()
     {
-        return view('UI.pages.admin.create-content',[
+        return view('UI.pages.admin.create-content', [
             'title' => $this->content,
-            'navigation' => [$this->content,'buat konten']
+            'navigation' => [$this->content, 'buat konten']
         ]);
     }
 
@@ -79,7 +107,7 @@ class AdminController extends Controller
             'judul' => 'required|max:35',
             'isi_konten' => 'required',
             'gambar' => 'required|image|max:3072'
-        ],[
+        ], [
             'judul.required' => 'Judul wajib diisi !',
             'judul.max' => 'Batas maksimal karakter tercapai',
             'isi_konten' => 'Isi konten wajib diisi',
@@ -87,10 +115,13 @@ class AdminController extends Controller
             'gambar.max' => 'Batas maksimal ukuran gambar adalah 3mb'
         ]);
         foreach ($this->dangerous_tags as $key => $tag) {
-            if(strpos($request->isi_konten, $tag) !== false) {
-                return redirect()->back()->with('failtocreate','Input anda mengandung tag berbahaya');
+            if (strpos($request->isi_konten, $tag) !== false) {
+                return redirect()->back()->with('failtocreate', 'Input anda mengandung tag berbahaya');
             }
         }
+        // Buat logic agar kode_qr bisa beda.
+
+
         $val['kode_qr'] = Str::random(13);
         // $val['teacher_id'] = Auth::user()->id;
         $content = Content::create($val);

@@ -1,12 +1,7 @@
 @extends('UI.templates.body')
 @section('main-admin-section')
     @if (session()->has('failtocreate') || $errors->any())
-        <div class="alert alert-warning alert-dismissible fade show rounded-3 shadow-sm" role="alert"
-            style="
-            --bs-alert-color: #664d03;
-            --bs-alert-bg: #ffee00;
-            --bs-alert-border-color: #ffef09;
-            ">
+        <div class="alert alert-warning alert-dismissible fade show rounded-3 shadow-sm" role="alert">
             <strong>Gagal membuat data !</strong>
             @if (session()->has('failtocreate'))
                 {{ session('failtocreate') }}

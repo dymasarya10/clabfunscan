@@ -7,7 +7,6 @@
 <script src="{{ asset('sbadmin/assets/demo/chart-pie-demo.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
     crossorigin="anonymous"></script>
-<script src="{{ asset('sbadmin/js/datatables-simple-demo.js') }}"></script>
 </body>
 
 </html>

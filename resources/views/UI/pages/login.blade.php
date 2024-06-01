@@ -7,7 +7,7 @@
         <div class="AppLoginForm p-4 rounded-4 d-flex flex-column justify-content-center align-items-center">
             <img src="{{ asset('myassets/img/LabJakAppsDark.png') }}" alt="" class="img-fluid" width="50rem">
             <div class="container-fluid text-center mt-4">
-                <h3 class="h4 text-white">LABJAK</h3>
+                <h3 class="h4 text-white">{{ env('APP_NAME') }}</h3>
             </div>
             <form action="" class="mt-3 w-100">
                 <div class="form-floating mb-3 w-100 ">

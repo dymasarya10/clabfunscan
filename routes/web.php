@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EduLevelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,8 @@ Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 Route::get('/contents', [AdminController::class, 'allContent'])->name('contents');
 Route::get('/contents/create', [AdminController::class, 'createContent'])->name('createcontents');
 Route::post('/contents/store', [AdminController::class, 'store'])->name('storecontents');
+
+Route::get('/edulvls', [EduLevelController::class, 'index'])->name('edulevels');
+Route::post('/edulvls/store', [EduLevelController::class, 'store'])->name('storeedulevels');
+Route::delete('/edulvls/destroy/{id}', [EduLevelController::class, 'destroy'])->name('destroyedulevels');
 

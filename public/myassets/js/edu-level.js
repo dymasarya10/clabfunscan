@@ -31,6 +31,7 @@ const OpenFormParent = (value, id, method) => {
         formParent.classList.contains("d-none")
     ) {
         formParent.classList.remove(OutAnimation);
+        formParent.classList.remove("d-none");
     }
     formParent.classList.add(InAnimation);
     document.getElementById("inputEdit").value = value.toUpperCase();
@@ -41,6 +42,9 @@ const CloseFormParent = () => {
         formParent.classList.remove(InAnimation);
     }
     formParent.classList.add(OutAnimation);
+    setTimeout(() => {
+        formParent.classList.add("d-none");
+    }, 600);
 };
 const LoadConfirmModal = (method, id) => {
     if (method == "edit") {

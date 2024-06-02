@@ -15,7 +15,7 @@
         </div>
     @endif
     <div class="row">
-        <div class="col-12 col-xl-5" style="z-index: 10">
+        <div class="col-12 col-xl-5 order-2 order-md-1" style="z-index: 10">
             <div class="bg-white rounded-4 AppShadow p-4 mb-3">
                 <h5 class="mb-4">Data Jenjang</h5>
                 <button class="btn btn-primary mb-4" onclick="OpenFormParent('none','none','post')">
@@ -83,7 +83,7 @@
             <p class="fw-light">Jika terkendala dalam aplikasi silakan hubungi <a href="https://wa.me/089513909248?text=Saya%20terkendala%20aplikasi%20LabFunScan" target="_blank">Dymas</a> untuk troubleshoot lebih lanjut !</p> --}}
             </div>
         </div>
-        <div class="col-12 col-xl-4 animate__animated animate__faster animate__fadeOutLeft" id="form_jenjang"
+        <div class="col-12 col-xl-4 order-1 order-md-2 animate__animated animate__faster" id="form_jenjang"
             style="--animation-duration: .5s">
             <div class="d-flex flex-column">
                 <div class="bg-white rounded-4 p-4 AppShadow mb-4 order-2 d-none" id="form_container_edit">

@@ -21,22 +21,43 @@ class EduLevelController extends Controller
     public function store(Request $request)
     {
         $val = $request->validate([
-            'nama_jenjang' => 'required|max:5|regex:/^[a-zA-Z]+$/|unique:education_levels,nama_jenjang'
+            'nama_jenjang_post' => 'required|max:5|regex:/^[a-zA-Z]+$/|unique:education_levels,nama_jenjang'
         ], [
-            'nama_jenjang.required' => 'Bidang ini harus diisi !',
-            'nama_jenjang.max' => 'Batas maksimal kata adalah 5 kata',
-            'nama_jenjang.regex' => 'Hanya alfabet yang diperbolehkan !',
-            'nama_jenjang.unique' => 'Jenjang sudah ada'
+            'nama_jenjang_post.required' => 'Bidang ini harus diisi !',
+            'nama_jenjang_post.max' => 'Batas maksimal kata adalah 5 kata',
+            'nama_jenjang_post.regex' => 'Hanya alfabet yang diperbolehkan !',
+            'nama_jenjang_post.unique' => 'Jenjang sudah ada'
         ]);
-        $val['nama_jenjang'] = strtolower($val['nama_jenjang']);
+        $val['nama_jenjang'] = strtolower($val['nama_jenjang_post']);
         $edulvl = Edu::create($val);
 
         return redirect(route('edulevels'))->with('success','Jenjang yang dibuat: '.strtoupper($edulvl->nama_jenjang));
     }
 
-    public function destroy($id)
+    public function put(Request $request)
     {
-        $edulvl = Edu::find(base64_decode($id));
+        $decryptedId = decrypt($request->id_jenjang);
+        $val = $request->validate([
+            'nama_jenjang_edit' => "required|unique:education_levels,nama_jenjang,$decryptedId,id|max:5|regex:/^[a-zA-Z]+$/"
+        ],[
+            'nama_jenjang_edit.unique' => strtoupper($request->nama_jenjang_edit).' sudah ada !',
+            'nama_jenjang_edit.required' => 'Bidang ini harus diisi !',
+            'nama_jenjang_edit.max' => 'Batas maksimal kata adalah 5 kata',
+            'nama_jenjang_edit.regex' => 'Hanya alfabet yang diperbolehkan !',
+        ]);
+        $edulvl = Edu::find($decryptedId);
+        if ($val['nama_jenjang_edit'] === $edulvl->nama_jenjang) {
+            return redirect()->back()->withErrors(['nama_jenjang_edit' => 'Tidak ada data yang diubah !']);
+        }
+        $before = $edulvl->nama_jenjang;
+        $edulvl->update($val);
+
+        return redirect(route('edulevels'))->with('success','Data yang diubah: '.strtoupper($before).' menjadi '.strtoupper($edulvl->nama_jenjang));
+    }
+
+    public function destroy(Request $request)
+    {
+        $edulvl = Edu::find(base64_decode($request->id));
         $edulvl->delete();
         return redirect(route('edulevels'))->with('success','Berhasil menghapus '.strtoupper($edulvl->nama_jenjang));
     }

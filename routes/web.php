@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\EduLevelController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+Route::get('/', function() {
+    return redirect(route('creators'));
+})->name('dashboard');
+
+Route::get('/creators', [CreatorController::class, 'index'])->name('creators');
+Route::post('/creators/store', [CreatorController::class, 'store'])->name('creators.store');
+Route::delete('/creators/destroy', [CreatorController::class, 'destroy'])->name('creators.destroy');
+Route::put('/creators/put', [CreatorController::class, 'put'])->name('creators.put');
+
+
+
+
 Route::get('/contents', [AdminController::class, 'allContent'])->name('contents');
 Route::get('/contents/create', [AdminController::class, 'createContent'])->name('createcontents');
 Route::post('/contents/store', [AdminController::class, 'store'])->name('storecontents');

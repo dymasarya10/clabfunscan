@@ -10,11 +10,11 @@
             </div>
             <div class="sb-sidenav-menu-heading">superadmin</div>
             <a class="nav-link py-2 {{ $title === 'creator' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('dashboard') }}">
-                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></div>
                 Creator
             </a>
             <a class="nav-link py-2 {{ $title === 'jenjang' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('edulevels') }}">
-                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-school"></i></div>
                 Jenjang
             </a>
             <div class="sb-sidenav-menu-heading">menu utama</div>

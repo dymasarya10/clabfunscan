@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\EduLevelController;
 use Illuminate\Support\Facades\Route;
@@ -25,15 +26,12 @@ Route::post('/creators/store', [CreatorController::class, 'store'])->name('creat
 Route::delete('/creators/destroy', [CreatorController::class, 'destroy'])->name('creators.destroy');
 Route::put('/creators/put', [CreatorController::class, 'put'])->name('creators.put');
 
-
-
-
-Route::get('/contents', [AdminController::class, 'allContent'])->name('contents');
-Route::get('/contents/create', [AdminController::class, 'createContent'])->name('createcontents');
-Route::post('/contents/store', [AdminController::class, 'store'])->name('storecontents');
-
 Route::get('/edulvls', [EduLevelController::class, 'index'])->name('edulevels');
 Route::post('/edulvls/store', [EduLevelController::class, 'store'])->name('storeedulevels');
 Route::delete('/edulvls/destroy', [EduLevelController::class, 'destroy'])->name('destroyedulevels');
 Route::put('/edulvls/put', [EduLevelController::class, 'put'])->name('putedulevels');
+
+Route::get('/contents', [ContentController::class, 'index'])->name('contents');
+Route::get('/contents/create', [AdminController::class, 'createContent'])->name('createcontents');
+Route::post('/contents/store', [AdminController::class, 'store'])->name('storecontents');
 

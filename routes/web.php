@@ -32,6 +32,5 @@ Route::delete('/edulvls/destroy', [EduLevelController::class, 'destroy'])->name(
 Route::put('/edulvls/put', [EduLevelController::class, 'put'])->name('putedulevels');
 
 Route::get('/contents', [ContentController::class, 'index'])->name('contents');
-Route::get('/contents/create', [AdminController::class, 'createContent'])->name('createcontents');
-Route::post('/contents/store', [AdminController::class, 'store'])->name('storecontents');
+Route::post('/contents/store', [ContentController::class, 'store'])->name('contents.store');
 

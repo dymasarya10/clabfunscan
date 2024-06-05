@@ -15,7 +15,7 @@ class CreatorController extends Controller
 
     public function index()
     {
-        $edulvls = EducationLevel::orderBy('nama_jenjang', 'asc')->get();
+        $edulvls = EducationLevel::orderByRaw("FIELD(nama_jenjang, 'tk', 'sd', 'smp', 'smk')")->get();
         $creators = Creator::with(['user', 'education_level'])->get();
 
         return view('UI.pages.admin.creator', [
@@ -34,7 +34,7 @@ class CreatorController extends Controller
             'email_post' => 'required|email',
             'password_post' => 'required|min:8',
             'education_level_id_post' => 'not_in:pilih',
-            'foto_post' => 'required|file|max:2048|dimensions:height=500,width=500'
+            'foto_post' => 'required|image|max:2048|dimensions:height=500,width=500|mimes:png'
         ], [
             'nama_pengguna_post.required' => 'Nama pengguna wajib diisi !',
             'nama_pengguna_post.regex' => 'Terdeteksi karakter asing',
@@ -46,7 +46,9 @@ class CreatorController extends Controller
             'education_level_id_post.not_in' => 'Silakan pilih jenjang',
             'foto_post.required' => 'Foto wajib diisi !',
             'foto_post.max' => 'Ukuran maksimal file adalah 2mb',
-            'foto_post.dimensions' => 'Dimensi foto harus 500x500 pixel'
+            'foto_post.dimensions' => 'Dimensi foto harus 500x500 pixel',
+            'foto_post.image' => 'File harus berupa foto !',
+            'foto_post.mimes' => 'Hanya ekstensi PNG yang dapat diterima !',
         ]);
         $user_val['nama_pengguna'] = strtolower($val['nama_pengguna_post']);
         $user_val['nama'] = $val['nama_post'];

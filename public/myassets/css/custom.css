@@ -35,6 +35,10 @@
     background-color: #00cec9;
 }
 
+#customEditor .ck-editor__editable {
+    min-height: 15rem; /* Atur ketinggian sesuai kebutuhan Anda */
+}
+
 /* Preloader */
 #preloader {
     position: fixed;

@@ -14,12 +14,12 @@
         </div>
     @endif
     <div class="row mb-4">
-        <div class="col-12">
-            <div id="AppContentList" class="row animate__animated animate__faster mb-3">
+        <div id="AppContentList" class="col-12 animate__animated animate__faster">
+            <div class="row mb-3">
                 <div class="col-12 col-lg-7" style="z-index: 10">
                     <div class="bg-white rounded-4 p-4 AppShadow animate__animated animate__faster">
                         <h5 class="mb-4">Data Konten</h5>
-                        <a href="" class="btn btn-primary mb-4">Tambah Data</a>
+                        <button onclick="ShowCreateContentForm()" class="btn btn-primary mb-4">Tambah Data</button>
                         <table id="table_konten">
                             <thead>
                                 <tr>
@@ -106,46 +106,68 @@
                 </div>
             </div>
         </div>
-        <div id="AppCreateContent" class="col-12">
+        <div id="AppCreateContent" class="col-12 d-none animate__animated animate__faster">
             <div class="bg-white rounded-4 p-4 AppShadow">
                 <h5 class="mb-4">Buat Konten</h5>
                 <div class="row">
-                    <div class="col-12 col-lg-5 mb-3 border">
-                        <label for="" class="form-label mb-3">
+                    <div class="col-12 col-lg-5 mb-3">
+                        <label for="" class="form-label mb-2">
                             Preview Gambar
                         </label>
                         <img src="{{ asset('myassets/img/emptyfile.png') }}" alt="" class="img-fluid rounded-3"
                             id="createPreviewImage">
                     </div>
-                    <div class="col-12 col-lg-7 mb-3 border">
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="judul_post" class="form-label">Judul</label>
-                                    <input type="text" class="form-control" id="judul_post" name="judul_post"
-                                        aria-describedby="emailHelp">
-                                </div>
-
-                                {{-- LANJUT DISINI BIKIN ATRIBUT BUAAT CONTENT --}}
-                                <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
-                                </div>
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
+                    <div class="col-12 col-lg-7 mb-3">
+                        <form action="{{ route('contents.store') }}" method="POST" enctype="multipart/form-data" id="post_form">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="judul_post" class="form-label">Judul</label>
+                                <input value="{{ old('judul_post') }}" type="text" class="form-control @error('judul_post')
+                                    is-invalid
+                                @enderror" id="judul_post" name="judul_post"
+                                    aria-describedby="emailHelp">
+                                @error('judul_post')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="gambar_post" class="form-label">Gambar</label>
+                                <input onchange="PreviewImagePost(event)" type="file" class="form-control @error('gambar_post')
+                                    is-invalid
+                                @enderror"
+                                    id="gambar_post" name="gambar_post" aria-describedby="emailHelp" accept=".png">
+                                @error('gambar_post')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div id="customEditor" class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">
+                                    Isi Konten
+                                    @error('isi_konten_post')
+                                        <div class="small text-danger">{{ $message }}</div>
+                                    @enderror
+                                </label>
+                                <textarea name="isi_konten_post" id="editor" class="form-control">
+                                    {{ old('isi_konten_post') }}
+                                    </textarea>
+                            </div>
+                            <div class="container-fluid text-end p-0">
+                                <button type="button" onclick="ShowContentList('post')"
+                                    class="btn btn-danger">Batal</button>
+                                <a data-bs-toggle="modal"
+                                data-bs-target="#confirm_modal" class="btn btn-success" onclick="LoadConfirmData('post')">Simpan</a>
+                            </div>
                         </form>
                     </div>
                 </div>
-                <form action="" method="POST" enctype="multipart/form-data">
-
-                </form>
             </div>
         </div>
     </div>
 
+    @include('UI.partials.confirm-modal');
     <script src="{{ asset('myassets/js/content.js') }}"></script>
 @endsection

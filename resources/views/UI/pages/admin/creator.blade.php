@@ -113,7 +113,7 @@
                                                         class="form-control @error('foto_post')
                                             is-invalid
                                         @enderror"
-                                                        onchange="previewImage(event)">
+                                                        onchange="previewImage(event)" accept=".png">
                                                     @error('foto_post')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}

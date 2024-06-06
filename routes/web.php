@@ -33,4 +33,6 @@ Route::put('/edulvls/put', [EduLevelController::class, 'put'])->name('puteduleve
 
 Route::get('/contents', [ContentController::class, 'index'])->name('contents');
 Route::post('/contents/store', [ContentController::class, 'store'])->name('contents.store');
+Route::delete('/contents/destroy', [ContentController::class, 'destroy'])->name('contents.destroy');
+Route::put('/contents/put', [ContentController::class, 'put'])->name('contents.put');
 

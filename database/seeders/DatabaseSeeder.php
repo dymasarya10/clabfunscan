@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('claboratorium2024'),
             'peran' => 'superadmin',
         ]);
+
+        // \App\Models\Content::factory(100)->create();
     }
 }

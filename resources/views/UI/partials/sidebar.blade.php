@@ -5,7 +5,7 @@
                 <img src="{{ asset('myassets/img/LabJakAppsLogo.png') }}" alt="" class="img fluid" width="42rem">
                 <div class="container-fluid d-flex flex-column">
                     <div class="fw-bold small">{{ env('APP_NAME') }}</div>
-                    <div class="fw-light small">Dymas Arya</div>
+                    <div class="fw-light small">{{ auth()->user()->nama }}</div>
                 </div>
             </div>
             <div class="sb-sidenav-menu-heading">superadmin</div>

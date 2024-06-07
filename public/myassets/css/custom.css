@@ -18,9 +18,15 @@
     /* background: radial-gradient(#6610E1,#B900FA); */
 }
 
-.AppLoginForm {
+/* .AppLoginForm {
     background: linear-gradient(to bottom, #6610e1, #b900fa);
-}
+} */
+
+/* .AppBodyBg {
+    background-image: url('../../img/bgimage.png');
+    background-size: cover;
+    background-position: center;
+} */
 
 .AppShadow {
     box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.2);
@@ -85,7 +91,7 @@
     }
 }
 
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
     .AppLoginForm {
         width: 90%;
     }
@@ -107,11 +113,11 @@
 }
 @media (min-width: 1200px) {
     .AppLoginForm {
-        width: 40%;
+        width: 60%;
     }
 }
 @media (min-width: 1400px) {
     .AppLoginForm {
         width: 30%;
     }
-}
+} */

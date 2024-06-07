@@ -9,6 +9,17 @@ function hidePreloader() {
     // document.getElementById("preloader").classList.add("animate__fadeOutUp");
 }
 
+const AppLoginForm = document.getElementById("AppLoginForm");
+
 window.addEventListener("load", function () {
     hidePreloader();
+
+    if (AppLoginForm) {
+        setTimeout(() => {
+            if (AppLoginForm.classList.contains("d-none")) {
+                AppLoginForm.classList.remove("d-none")
+            }
+            AppLoginForm.classList.add("animate__fadeIn");
+        }, 600);
+    }
 });

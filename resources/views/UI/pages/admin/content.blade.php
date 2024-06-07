@@ -45,13 +45,8 @@
                                                 <div class="row row-cols-2 justify-content-center">
                                                     <div class="col p-0">
                                                         <a onclick="ShowPreviewContent({{ $content }})"
-                                                            class="btn btn-sm rounded-0 btn-info w-100">
+                                                            class="btn btn-sm rounded-0 btn-primary w-100">
                                                             <i class="fa-solid fa-eye"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col p-0">
-                                                        <a onclick="" class="btn btn-sm rounded-0 btn-primary w-100">
-                                                            <i class="fa-solid fa-magnifying-glass-arrow-right"></i>
                                                         </a>
                                                     </div>
                                                     <div class="col p-0">
@@ -215,31 +210,6 @@
                                     onclick="LoadConfirmData('update')">Simpan</a>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="AppDetailContent" class="col-12 animate__animated animate__faster">
-            <div class="bg-white rounded-4 p-4 AppShadow">
-                <h5 class="mb-4">Detail Konten</h5>
-                <div class="row">
-                    <div class="col-8 col-lg-4">
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td>Nama</td>
-                                    <td class="d-flex">: <div id="nameDetail" class="ms-2">Dymas Arya Nanda</div></td>
-                                </tr>
-                                <tr>
-                                    <td>Jenjang</td>
-                                    <td class="d-flex" class="text-uppercase">: <div id="jenjangDetail" class="ms-2">SMP</div></td>
-                                </tr>
-                                <tr>
-                                    <td>Dibuat pada</td>
-                                    <td class="d-flex" class="text-uppercase">: <div id="createdDetail" class="ms-2">27/02/2024</div></td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

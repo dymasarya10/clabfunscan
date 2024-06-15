@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div id="AppPreviewContent" class="col-12 col-lg-5 d-none animate__animated animate__faster">
-                    <div class="bg-white rounded-4 p-4 AppShadow">
+                    <div class="bg-white rounded-4 p-4 AppShadow text-center">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5 class="">Preview</h5>
                             <button onclick="ClosePreviewContent()" class="btn text-danger"><i

@@ -94,7 +94,7 @@
                         <h5 id="AppTitleContent" class="mb-3">Judul Kartu</h5>
                         <img src="" alt="" id="AppImageContent" class="img-fluid rounded-3">
                         <div id="AppTextContent" class="fw-light mt-3 px-2"
-                            style="text-align: justify; height: 20rem; overflow:auto">
+                            style="text-align: justify; height: 20rem; overflow:auto; width: 100%">
                         </div>
                     </div>
                 </div>

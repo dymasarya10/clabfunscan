@@ -129,7 +129,7 @@ class ContentController extends Controller
         $val = Validator::make($request->all(), [
             'judul_edit' => 'required|max:35',
             'isi_konten_edit' => 'required',
-            'gambar_edit' => 'required|image|max:5120|mimes:png'
+            'gambar_edit' => 'sometimes|image|max:5120|mimes:png'
         ],[
             'judul_edit.required' => 'Judul wajib diisi !',
             'judul_edit.max' => 'Batas maksimal karakter tercapai',

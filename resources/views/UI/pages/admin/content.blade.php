@@ -25,8 +25,8 @@
                         <table id="table_konten">
                             <thead>
                                 <tr>
-                                    @can('showCreator',App\Models\Content::class)
-                                    <th>Creator</th>
+                                    @can('showCreator', App\Models\Content::class)
+                                        <th>Creator</th>
                                     @endcan
                                     <th>Kode</th>
                                     <th>Judul</th>
@@ -35,8 +35,8 @@
                             </thead>
                             <tfoot>
                                 <tr>
-                                    @can('showCreator',App\Models\Content::class)
-                                    <th>Creator</th>
+                                    @can('showCreator', App\Models\Content::class)
+                                        <th>Creator</th>
                                     @endcan
                                     <th>Kode</th>
                                     <th>Judul</th>
@@ -46,8 +46,8 @@
                             <tbody>
                                 @foreach ($contents as $content)
                                     <tr>
-                                        @can('showCreator',App\Models\Content::class)
-                                        <td>{{ $content->teacher->user->nama }}</td>
+                                        @can('showCreator', App\Models\Content::class)
+                                            <td>{{ $content->teacher->user->nama }}</td>
                                         @endcan
                                         <td>{{ $content->kode_qr }}</td>
                                         <td>{{ $content->judul }}</td>
@@ -61,19 +61,19 @@
                                                         </a>
                                                     </div>
                                                     @can('notadmin')
-                                                    <div class="col p-0">
-                                                        <a onclick="ShowEditContentForm({{ $content }},'{{ base64_encode($content->id) }}')"
-                                                            class="btn btn-sm rounded-0 btn-warning w-100">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col p-0">
-                                                        <a class="btn btn-sm rounded-0 btn-danger w-100"
-                                                            data-bs-toggle="modal" data-bs-target="#confirm_modal"
-                                                            onclick="LoadConfirmData('delete','{{ base64_encode($content->id) }}')">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </a>
-                                                    </div>
+                                                        <div class="col p-0">
+                                                            <a onclick="ShowEditContentForm({{ $content }},'{{ base64_encode($content->id) }}')"
+                                                                class="btn btn-sm rounded-0 btn-warning w-100">
+                                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col p-0">
+                                                            <a class="btn btn-sm rounded-0 btn-danger w-100"
+                                                                data-bs-toggle="modal" data-bs-target="#confirm_modal"
+                                                                onclick="LoadConfirmData('delete','{{ base64_encode($content->id) }}')">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </a>
+                                                        </div>
                                                     @endcan
                                                 </div>
                                             </div>
@@ -93,9 +93,12 @@
                         </div>
                         <h5 id="AppTitleContent" class="mb-3">Judul Kartu</h5>
                         <img src="" alt="" id="AppImageContent" class="img-fluid rounded-3">
-                        <div id="AppTextContent" class="fw-light mt-3 px-2"
-                            style="text-align: justify; height: 20rem; overflow:auto; width: 100%">
-                        </div>
+                        {{-- <div id="AppTextContent" class="fw-light mt-3 px-2 border text-wrap"
+                            style="text-align: justify; height: 20rem; overflow-y:auto; width: 576px;">
+                        </div> --}}
+                        <textarea id="AppTextContent" class="form-control">
+
+                            </textarea>
                     </div>
                 </div>
             </div>

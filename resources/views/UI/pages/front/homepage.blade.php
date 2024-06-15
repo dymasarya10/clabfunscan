@@ -14,6 +14,7 @@
                         <h5 class="mt-2 mb-4">{{ env('APP_NAME') }}</h5>
                         <div id="reader" class="w-100"></div>
                         <div id="data-content" data-contents="{!! htmlspecialchars(json_encode($contents), ENT_QUOTES, 'UTF-8') !!}" class="d-none"></div>
+                        <button class="btn btn-danger" onclick="OpenResultContainer('9fwjON46TI9vT')">CLICk</button>
                     </div>
                 </div>
             </div>
@@ -88,7 +89,8 @@
         </div>
     </div>
     <div id="altResultContainer" class="animate__animated animate__faster d-none fixed-bottom w-100 min-vh-100">
-        <div id="theResult" class="animate__animated animate__faster d-flex flex-column bg-white w-100 align-items-center py-4 px-3"
+        <div id="theResult"
+            class="animate__animated animate__faster d-flex flex-column bg-white w-100 align-items-center py-4 px-3"
             style="overflow: auto">
             <div class="d-flex justify-content-end px-2 w-100">
                 <button class="btn" onclick="CloseResultContainer()">
@@ -97,15 +99,11 @@
             </div>
             <h2 id="altTitleContent" class="text-center mb-4">Judul</h2>
             <img id="altImageContent" src="{{ asset('myassets/img/emptyfile.png') }}" alt="" class="img-fluid">
-            <div id="altTextContent" class="mt-3 w-100">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt dignissimos iure culpa rerum quae
-                corrupti alias dolorum accusantium! Labore, quasi necessitatibus tempora incidunt consequatur amet
-                possimus, ut quia tenetur, quam molestiae architecto inventore. Id corrupti sint officiis maxime earum
-                ea enim iste asperiores soluta provident, esse quas praesentium ex fugiat libero, obcaecati nulla unde
-                quia. Labore odio assumenda eum commodi fuga! Numquam itaque dignissimos neque fugiat atque non eveniet
-                dolores, error eaque voluptates reprehenderit praesentium saepe nesciunt enim repellendus nobis iusto
-                voluptatum quibusdam ipsam commodi, culpa voluptatibus molestias magni? Fugit, maiores repudiandae.
-                Asperiores fugiat repudiandae doloribus magni corporis dolorem quidem.
+            <div class="container-fluid">
+
+                <textarea id="theText" class="form-control">
+
+            </textarea>
             </div>
         </div>
     </div>

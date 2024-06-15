@@ -16,7 +16,9 @@ const altResultContainer = document.getElementById("altResultContainer");
 const altTheResult = document.getElementById("theResult");
 const altTitle = document.getElementById("altTitleContent");
 const altImage = document.getElementById("altImageContent");
-const altText = document.getElementById("altTextContent");
+// const altText = document.getElementById("altTextContent");
+
+let theText;
 
 
 const AnimIn = "animate__slideInUp";
@@ -38,7 +40,7 @@ const OpenResultContainer = (barcode) => {
 
         altTitle.innerText = foundContent.judul;
         altImage.src = `../../storage/${foundContent.gambar}`;
-        altText.innerHTML = foundContent.isi_konten;
+        theText.setData(foundContent.isi_konten);
     } else {
         if (resultContainer.classList.contains("d-flex")) {
             resultContainer.classList.remove("d-flex");
@@ -92,3 +94,16 @@ function onScanSuccess(decodedText, decodedResult) {
     OpenResultContainer(decodedText);
 };
 html5QrcodeScanner.render(onScanSuccess);
+
+document.addEventListener("DOMContentLoaded", () => {
+    ClassicEditor.create(document.querySelector("#theText"), {
+        removePlugins: ["Heading"],
+        toolbar: [],
+    }).then(editor => {
+        // Set editor to read-only mode
+        editor.enableReadOnlyMode('theText');
+        theText = editor;
+    }).catch((error) => {
+        console.error(error);
+    });
+})

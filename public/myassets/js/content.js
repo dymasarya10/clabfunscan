@@ -7,6 +7,7 @@ let OutAnimPreview = "animate__fadeOutUp";
 
 // Component
 let editTextContent;
+let previewTextContent;
 const idEdit = document.getElementById("id_update");
 const titleContent = document.getElementById("AppTitleContent");
 const imageContent = document.getElementById("AppImageContent");
@@ -99,7 +100,8 @@ const ShowPreviewContent = data => {
     }
     titleContent.innerText = data.judul;
     imageContent.src = `../../storage/${data.gambar}`;
-    textContent.innerHTML = data.isi_konten;
+    previewTextContent.setData(data.isi_konten);
+
 
     preview.classList.add(InAnimPreview);
 };
@@ -130,6 +132,17 @@ document.addEventListener("DOMContentLoaded", function () {
     ClassicEditor.create(document.querySelector("#editor"), {
         removePlugins: ["Heading"],
         toolbar: ["bold", "italic", "bulletedList", "numberedList", "link"],
+    }).catch((error) => {
+        console.error(error);
+    });
+
+    ClassicEditor.create(document.querySelector("#AppTextContent"), {
+        removePlugins: ["Heading"],
+        toolbar: [],
+    }).then(editor => {
+        // Set editor to read-only mode
+        editor.enableReadOnlyMode('AppTextContent');
+        previewTextContent = editor;
     }).catch((error) => {
         console.error(error);
     });

@@ -3,6 +3,13 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Content;
+use App\Models\Teacher;
+use App\Policies\ContentPolicy;
+use App\Policies\CreatorPolicy;
+use App\Policies\ProfilPolicy;
+use App\Policies\TeacherPolicy;
+use Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,7 +20,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        Teacher::class => TeacherPolicy::class,
+        Content::class => ContentPolicy::class,
     ];
 
     /**
@@ -21,6 +29,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('notadmin',[ProfilPolicy::class, 'NotSuperAdmin']);
     }
 }

@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Operator::class, 'user_id', 'id');
     }
+
+    public function isSuperAdmin()
+    {
+        return auth()->user()->peran === 'superadmin';
+    }
 }

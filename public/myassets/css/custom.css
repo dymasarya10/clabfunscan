@@ -18,10 +18,6 @@
     /* background: radial-gradient(#6610E1,#B900FA); */
 }
 
-/* .AppLoginForm {
-    background: linear-gradient(to bottom, #6610e1, #b900fa);
-} */
-
 /* .AppBodyBg {
     background-image: url('../../img/bgimage.png');
     background-size: cover;
@@ -121,3 +117,56 @@
         width: 30%;
     }
 } */
+
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    --c:no-repeat radial-gradient(farthest-side,#514b82 92%,#0000);
+    background:
+      var(--c) 50%  0,
+      var(--c) 50%  100%,
+      var(--c) 100% 50%,
+      var(--c) 0    50%;
+    background-size: 10px 10px;
+    animation: l18 1s infinite;
+    position: relative;
+  }
+  .loader::before {
+    content:"";
+    position: absolute;
+    inset:0;
+    margin: 3px;
+    background: repeating-conic-gradient(#0000 0 35deg,#514b82 0 90deg);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 0);
+    border-radius: 50%;
+  }
+  @keyframes l18 {
+    100%{transform: rotate(.5turn)}
+  }
+
+#altResultContainer{
+    background-color: rgba(0,0,0,0.8);
+    padding-top: 13rem !important;
+}
+
+#theResult{
+    height: 80vh;
+    border-radius: 25px 25px 0 0;
+}
+
+.content-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 100; /* Initial opacity */
+    transition: all 1s ease; /* Transition for the opacity */
+}

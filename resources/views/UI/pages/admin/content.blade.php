@@ -19,18 +19,26 @@
                 <div class="col-12 col-lg-7 mb-3" style="z-index: 10">
                     <div class="bg-white rounded-4 p-4 AppShadow animate__animated animate__faster">
                         <h5 class="mb-4">Data Konten</h5>
+                        @canMakeContent
                         <button onclick="ShowCreateContentForm()" class="btn btn-primary mb-4">Tambah Data</button>
+                        @endcanMakeContent
                         <table id="table_konten">
                             <thead>
                                 <tr>
+                                    @can('showCreator',App\Models\Content::class)
                                     <th>Creator</th>
+                                    @endcan
+                                    <th>Kode</th>
                                     <th>Judul</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
+                                    @can('showCreator',App\Models\Content::class)
                                     <th>Creator</th>
+                                    @endcan
+                                    <th>Kode</th>
                                     <th>Judul</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -38,7 +46,10 @@
                             <tbody>
                                 @foreach ($contents as $content)
                                     <tr>
+                                        @can('showCreator',App\Models\Content::class)
                                         <td>{{ $content->teacher->user->nama }}</td>
+                                        @endcan
+                                        <td>{{ $content->kode_qr }}</td>
                                         <td>{{ $content->judul }}</td>
                                         <td>
                                             <div class="container-fluid">
@@ -49,6 +60,7 @@
                                                             <i class="fa-solid fa-eye"></i>
                                                         </a>
                                                     </div>
+                                                    @can('notadmin')
                                                     <div class="col p-0">
                                                         <a onclick="ShowEditContentForm({{ $content }},'{{ base64_encode($content->id) }}')"
                                                             class="btn btn-sm rounded-0 btn-warning w-100">
@@ -62,6 +74,7 @@
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
                                                     </div>
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </td>

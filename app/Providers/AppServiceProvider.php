@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Blade::if('canViewCreator', function () {
+            return auth()->user()->can('view', App\Models\Teacher::class);
+        });
+        Blade::if('canMakeContent', function () {
+            return auth()->user()->can('make', App\Models\Content::class);
+        });
+        Blade::if('notSuperAdmin', function () {
+            return auth()->user()->can('notadmin');
+        });
     }
 }

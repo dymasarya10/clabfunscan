@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Content;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\EducationLevel as Edu;
+use Illuminate\Support\Facades\Storage;
 
 class EduLevelController extends Controller
 {
@@ -58,6 +62,23 @@ class EduLevelController extends Controller
     public function destroy(Request $request)
     {
         $edulvl = Edu::find(base64_decode($request->id));
+        $creators = Teacher::where('education_level_id',$edulvl->id)->get();
+
+        foreach ($creators as $key => $creator) {
+            $contents = Content::where('teacher_id',$creator->id)->get();
+            $user = User::find($creator->user_id);
+            foreach ($contents as $key => $content) {
+                if (Storage::exists($content->gambar)) {
+                    Storage::delete($content->gambar);
+                }
+                $content->delete();
+            }
+            if (Storage::exists($user->foto)) {
+                Storage::delete($user->foto);
+            }
+            $creator->delete();
+            $user->delete();
+        }
         $edulvl->delete();
         return redirect(route('edulevels'))->with('success','Berhasil menghapus '.strtoupper($edulvl->nama_jenjang));
     }

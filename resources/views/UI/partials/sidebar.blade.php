@@ -2,23 +2,35 @@
     <div class="sb-sidenav-menu">
         <div class="nav px-3 pt-4">
             <div class="container-fluid d-flex">
-                <img src="{{ asset('myassets/img/LabJakAppsLogo.png') }}" alt="" class="img fluid" width="42rem">
+                <img src="{{ asset('myassets/img/LabJakAppsLogo.png') }}" alt="" class="img fluid" width="42rem" height="42rem">
                 <div class="container-fluid d-flex flex-column">
                     <div class="fw-bold small">{{ env('APP_NAME') }}</div>
-                    <div class="fw-light small">{{ auth()->user()->nama }}</div>
+                    <div class="fw-light small">{{ explode(" ",auth()->user()->nama)[0] }}</div>
                 </div>
             </div>
-            <div class="sb-sidenav-menu-heading">superadmin</div>
-            <a class="nav-link py-2 {{ $title === 'creator' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('dashboard') }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></div>
-                Creator
-            </a>
-            <a class="nav-link py-2 {{ $title === 'jenjang' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('edulevels') }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-school"></i></div>
-                Jenjang
-            </a>
+            @canViewCreator
+                <div class="sb-sidenav-menu-heading">superadmin</div>
+                <a class="nav-link py-2 {{ $title === 'creator' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;"
+                    href="{{ route('creators') }}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-users-line"></i></div>
+                    Creator
+                </a>
+                <a class="nav-link py-2 {{ $title === 'jenjang' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;"
+                    href="{{ route('edulevels') }}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-school"></i></div>
+                    Jenjang
+                </a>
+            @endcanViewCreator
             <div class="sb-sidenav-menu-heading">menu utama</div>
-            <a class="nav-link py-2 {{ $title === 'konten' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;" href="{{ route('contents') }}">
+            @notSuperAdmin
+            <a class="nav-link py-2 {{ $title === 'profil' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;"
+                href="">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                Profil
+            </a>
+            @endnotSuperAdmin
+            <a class="nav-link py-2 {{ $title === 'konten' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;"
+                href="{{ route('contents') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa-qrcode"></i></div>
                 Konten
             </a>

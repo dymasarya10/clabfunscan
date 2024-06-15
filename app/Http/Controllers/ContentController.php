@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Content;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -40,10 +41,15 @@ class ContentController extends Controller
             '</form>' => '</form>',
         ];
         $this->thePath = "foto_konten";
+
     }
     public function index()
     {
-        $contents = Content::with('teacher')->get();
+        if (auth()->user()->isSuperAdmin()) {
+            $contents = Content::with('teacher')->get();
+        } else {
+            $contents = Content::with('teacher')->where('teacher_id',auth()->user()->teacher->id)->get();
+        }
 
         return view('UI.pages.admin.content', [
             'title' => $this->title,
@@ -94,7 +100,7 @@ class ContentController extends Controller
         }
 
         $content_data = [
-            'teacher_id' => 1,
+            'teacher_id' => auth()->user()->teacher->id,
             'kode_qr' => $qr_code,
             'judul' => $input_data['judul_post'],
             'isi_konten' => $input_data['isi_konten_post'],

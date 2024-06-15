@@ -27,27 +27,23 @@
     <!-- Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
         style="z-index: 99999">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
-                <div class="modal-header bg-success">
-                    {{-- <h1 class="modal-title fs-5" id="exampleModalLabel">Konfirmasi</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-                </div>
                 <div class="modal-body text-center">
                     Apakah anda yakin ingin keluar dari aplikasi ?
-                    <div class="container-fluid d-flex justify-content-center mt-3">
-                        <button type="button" class="mx-1 btn btn-sm btn-danger">
-                            Ya
-                        </button>
-                        <button type="button" data-bs-dismiss="modal" class="mx-1 btn btn-sm btn-danger">
-                            Batal
-                        </button>
-                    </div>
+
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <div class="container-fluid d-flex justify-content-center mt-3">
+                            <button type="button" data-bs-dismiss="modal" class="mx-1 btn btn-sm btn-danger">
+                                Batal
+                            </button>
+                            <button type="submit" class="mx-1 btn btn-sm btn-success">
+                                Ya
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                {{-- <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-danger" >Batal</button>
-                    <button type="button" class="btn btn-success">Ya</button>
-                </div> --}}
             </div>
         </div>
     </div>

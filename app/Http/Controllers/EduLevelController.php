@@ -61,11 +61,12 @@ class EduLevelController extends Controller
 
     public function destroy(Request $request)
     {
+        // return dd($request);
         $edulvl = Edu::find(base64_decode($request->id));
-        $creators = Teacher::where('education_level_id',$edulvl->id)->get();
+        $creators = Teacher::where('education_level_id',$edulvl->education_level_id)->get();
 
         foreach ($creators as $key => $creator) {
-            $contents = Content::where('teacher_id',$creator->id)->get();
+            $contents = Content::where('teacher_id',$creator->teacher_id)->get();
             $user = User::find($creator->user_id);
             foreach ($contents as $key => $content) {
                 if (Storage::exists($content->gambar)) {

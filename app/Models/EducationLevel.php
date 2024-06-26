@@ -10,7 +10,9 @@ class EducationLevel extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = ['education_level_id'];
+
+    protected $primaryKey = 'education_level_id';
 
     /**
      * Get the teacher associated with the EducationLevel

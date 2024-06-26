@@ -10,7 +10,9 @@ class Content extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = ['content_id'];
+
+    protected $primaryKey = 'content_id';
 
     /**
      * Get the teacher that owns the Content

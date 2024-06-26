@@ -44,14 +44,14 @@
                                         <div class="row row-cols-1 row-cols-lg-2 justify-content-center">
                                             <div class="col p-1">
                                                 <button class="btn btn-sm btn-warning w-100"
-                                                    onclick="OpenFormParent('{{ $edu_level->nama_jenjang }}','{{ encrypt($edu_level->id) }}','edit')">
+                                                    onclick="OpenFormParent('{{ $edu_level->nama_jenjang }}','{{ encrypt($edu_level->education_level_id) }}','edit')">
                                                     Edit
                                                 </button>
                                             </div>
                                             <div class="col p-1">
                                                 <button data-bs-toggle="modal" data-bs-target="#confirm_modal"
                                                     class="btn btn-sm btn-danger w-100"
-                                                    onclick="LoadConfirmModal('delete','{{ base64_encode($edu_level->id) }}')">
+                                                    onclick="LoadConfirmModal('delete','{{ base64_encode($edu_level->education_level_id) }}')">
                                                     Hapus
                                                 </button>
                                             </div>
@@ -67,19 +67,6 @@
                     @csrf
                     <input type="hidden" name="id" id="delete_field">
                 </form>
-                {{-- <p class="fw-light lh-base" style="text-align: justify">
-                Selamat Datang, Dymas Arya <br><br>
-                LabFunScan adalah sebuah aplikasi yang dibuat bertujuan untuk mengembangkan gaya kegiatan belajar mengajar di sekolah. Aplikasi ini sangat cocok untuk digunakan ketika KBM dilaksanakan di luar kelas atau <i>Outing Class</i>.<br>
-                Cara Penggunaan : <br>
-                <ol class="fw-light">
-                    <li>Siapkan gambar untuk pembuatan konten</li>
-                    <li>Isi bidang judul dan isi konten untuk menambah deskripsi dari konten yang dibuat</li>
-                    <li>Sistem akan secara otomatis meng generate kode yang akan dijadikan sebagai <i>qrcode</i></li>
-                    <li>Buat qrcode lewat <a href="https://www.canva.com/" target="_blank">canva</a> atau aplikasi lain yang memungkinkan membuat qrcode</li>
-                    <li>Konten siap ditampilkan !</li>
-                </ol>
-            </p>
-            <p class="fw-light">Jika terkendala dalam aplikasi silakan hubungi <a href="https://wa.me/089513909248?text=Saya%20terkendala%20aplikasi%20LabFunScan" target="_blank">Dymas</a> untuk troubleshoot lebih lanjut !</p> --}}
             </div>
         </div>
         <div class="col-12 col-xl-5 col-xxl-4 order-1 order-md-2 animate__animated animate__faster" id="form_jenjang"

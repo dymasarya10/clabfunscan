@@ -14,6 +14,7 @@
                         <h5 class="mt-2 mb-4">{{ env('APP_NAME') }}</h5>
                         <div id="reader" class="w-100"></div>
                         <div id="data-content" data-contents="{!! htmlspecialchars(json_encode($contents), ENT_QUOTES, 'UTF-8') !!}" class="d-none"></div>
+                        {{-- <button class="btn btn-danger" onclick="OpenResultContainer('CMWQEBkje6wtH')">CLICK</button> --}}
                     </div>
                 </div>
             </div>

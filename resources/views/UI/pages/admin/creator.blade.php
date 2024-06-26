@@ -58,7 +58,7 @@
                                     <div class="container-fluid">
                                         <div class="row row-cols-1 row-cols-md-2 justify-content-center">
                                             <div class="col p-1">
-                                                <a onclick="ShowUpdateForm({{ $creator }},'{{ encrypt($creator->id) }}')"
+                                                <a onclick="ShowUpdateForm({{ $creator }},'{{ encrypt($creator->teacher_id) }}')"
                                                     class="btn btn-sm btn-warning w-100">
                                                     Edit
                                                 </a>
@@ -66,7 +66,7 @@
                                             <div class="col p-1">
                                                 <a class="btn btn-sm btn-danger w-100" data-bs-toggle="modal"
                                                     data-bs-target="#confirm_modal"
-                                                    onclick="LoadConfirmData('delete',{{ $creator->id }})">
+                                                    onclick="LoadConfirmData('delete',{{ $creator->teacher_id }})">
                                                     Hapus
                                                 </a>
                                             </div>
@@ -114,6 +114,8 @@
                                             is-invalid
                                         @enderror"
                                                         onchange="previewImage(event)" accept=".png">
+                                                        <div class="form-text fst-italic">Maks
+                                                            2mb</div>
                                                     @error('foto_post')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -190,8 +192,8 @@
                                                 aria-label="Default select example" name="education_level_id_post">
                                                 <option value="pilih">Pilih</option>
                                                 @foreach ($edulvls as $edulvl)
-                                                    <option value="{{ base64_encode($edulvl->id) }}"
-                                                        {{ old('education_level_id_post') === base64_encode($edulvl->id) ? 'selected' : '' }}>
+                                                    <option value="{{ base64_encode($edulvl->education_level_id) }}"
+                                                        {{ old('education_level_id_post') === base64_encode($edulvl->education_level_id) ? 'selected' : '' }}>
                                                         {{ strtoupper($edulvl->nama_jenjang) }}
                                                     </option>
                                                 @endforeach
@@ -239,7 +241,7 @@
                                             </div>
                                         @enderror
                                         <div class="form-text fst-italic">Kosongkan jika tidak ingin mengganti foto. Maks
-                                            3mb</div>
+                                            2mb</div>
                                     </div>
                                 </div>
                             </div>
@@ -295,8 +297,8 @@
                                     aria-label="Default select example" name="education_level_id_update">
                                     <option value="pilih">Pilih</option>
                                     @foreach ($edulvls as $edulvl)
-                                        <option class="FormOption" value="{{ base64_encode($edulvl->id) }}"
-                                            {{ old('education_level_id_update') === base64_encode($edulvl->id) ? 'selected' : '' }}>
+                                        <option class="FormOption" value="{{ base64_encode($edulvl->education_level_id) }}"
+                                            {{ old('education_level_id_update') === base64_encode($edulvl->education_level_id) ? 'selected' : '' }}>
                                             {{ strtoupper($edulvl->nama_jenjang) }}
                                         </option>
                                     @endforeach

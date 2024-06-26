@@ -48,7 +48,7 @@ class ContentController extends Controller
         if (auth()->user()->isSuperAdmin()) {
             $contents = Content::with('teacher')->get();
         } else {
-            $contents = Content::with('teacher')->where('teacher_id',auth()->user()->teacher->id)->get();
+            $contents = Content::with('teacher')->where('teacher_id',auth()->user()->teacher->teacher_id)->get();
         }
 
         return view('UI.pages.admin.content', [
@@ -61,7 +61,7 @@ class ContentController extends Controller
     public function store(Request $request)
     {
         $val = Validator::make($request->all(),[
-            'judul_post' => 'required|max:35',
+            'judul_post' => 'required|max:25',
             'gambar_post' => 'required|image|max:5120|mimes:png',
             'isi_konten_post' => 'required'
         ], [
@@ -86,7 +86,6 @@ class ContentController extends Controller
         $input_data['gambar_post'] = $request->file('gambar_post')->store($this->thePath);
         $content_codes = Content::with(['teacher'])->get('kode_qr');
         $qr_code = Str::random(13);
-        $percobaan = 0;
 
         if ($content_codes->count() < 1) {
             $qr_code = Str::random(13);
@@ -94,13 +93,12 @@ class ContentController extends Controller
             foreach ($content_codes as $key => $content_code) {
                 if ($qr_code === $content_code) {
                     $qr_code = Str::random(13);
-                    $percobaan++;
                 }
             }
         }
 
         $content_data = [
-            'teacher_id' => auth()->user()->teacher->id,
+            'teacher_id' => auth()->user()->teacher->teacher_id,
             'kode_qr' => $qr_code,
             'judul' => $input_data['judul_post'],
             'isi_konten' => $input_data['isi_konten_post'],

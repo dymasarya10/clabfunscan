@@ -62,7 +62,7 @@
                                                     </div>
                                                     @can('notadmin')
                                                         <div class="col p-0">
-                                                            <a onclick="ShowEditContentForm({{ $content }},'{{ base64_encode($content->id) }}')"
+                                                            <a onclick="ShowEditContentForm({{ $content }},'{{ base64_encode($content->content_id) }}')"
                                                                 class="btn btn-sm rounded-0 btn-warning w-100">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
@@ -70,7 +70,7 @@
                                                         <div class="col p-0">
                                                             <a class="btn btn-sm rounded-0 btn-danger w-100"
                                                                 data-bs-toggle="modal" data-bs-target="#confirm_modal"
-                                                                onclick="LoadConfirmData('delete','{{ base64_encode($content->id) }}')">
+                                                                onclick="LoadConfirmData('delete','{{ base64_encode($content->content_id) }}')">
                                                                 <i class="fa-solid fa-trash"></i>
                                                             </a>
                                                         </div>

@@ -28,6 +28,7 @@ class LoginController extends Controller
             return redirect()->intended(route('contents'));
         }
 
+
         return back()->with('failedauth', 'Login Gagal');
     }
 

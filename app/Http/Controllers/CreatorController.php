@@ -29,7 +29,7 @@ class CreatorController extends Controller
     public function store(Request $request)
     {
         $val = $request->validate([
-            'nama_pengguna_post' => 'required|regex:/^[a-zA-Z0-9_]+$/|unique:users,nama_pengguna',
+            'nama_pengguna_post' => 'required|regex:/^[a-zA-Z0-9_]+$/|unique:users,nama_pengguna|max:100',
             'nama_post' => 'required|regex:/^[a-zA-Z, .]+$/',
             'email_post' => 'required|email',
             'password_post' => 'required|min:8',
@@ -37,6 +37,7 @@ class CreatorController extends Controller
             'foto_post' => 'required|image|max:2048|dimensions:height=500,width=500|mimes:png'
         ], [
             'nama_pengguna_post.required' => 'Nama pengguna wajib diisi !',
+            'nama_pengguna_post.max' => 'Nama pengguna melebihi batas maksimal !',
             'nama_pengguna_post.regex' => 'Terdeteksi karakter asing',
             'nama_pengguna_post.unique' => 'Nama pengguna sudah ada !',
             'email_post.required' => 'Email wajib diisi !',
@@ -60,7 +61,7 @@ class CreatorController extends Controller
         $user = User::create($user_val);
 
         $creator_val['education_level_id'] = base64_decode($val['education_level_id_post']);
-        $creator_val['user_id'] = $user->id;
+        $creator_val['user_id'] = $user->user_id;
 
         $creator = Creator::create($creator_val);
 
@@ -87,13 +88,14 @@ class CreatorController extends Controller
         $creator = Creator::with(['user', 'education_level'])->find($id_update);
         $user = User::find($creator->user_id);
         $val = $request->validate([
-            'nama_pengguna_update' => "required|unique:users,nama_pengguna,$user->id,id|regex:/^[a-zA-Z0-9_]+$/",
+            'nama_pengguna_update' => "required|unique:users,nama_pengguna,$user->user_id,user_id|regex:/^[a-zA-Z0-9_]+$/|max:100",
             'nama_update' => 'required|regex:/^[a-zA-Z, .]+$/',
             'email_update' => 'required|email',
             'education_level_id_update' => 'not_in:pilih',
             'foto_update' => 'sometimes|file|max:2048|dimensions:height=500,width=500'
         ], [
             'nama_pengguna_update.required' => 'Nama pengguna harus diisi !',
+            'nama_pengguna_update.max' => 'Nama pengguna melebihi batas maksimal !',
             'nama_pengguna_update.unique' => "$request->nama_pengguna_update pengguna sudah terdaftar !",
             'nama_pengguna_update.regex' => 'Terdeteksi karakter asing !',
             'email_update.required' => 'Email wajib diisi !',

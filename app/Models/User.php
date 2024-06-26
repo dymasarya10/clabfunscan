@@ -37,6 +37,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $primaryKey = 'user_id';
+
     /**
      * The attributes that should be cast.
      *
@@ -54,11 +56,7 @@ class User extends Authenticatable
      */
     public function teacher(): HasOne
     {
-        return $this->hasOne(Teacher::class, 'user_id', 'id');
-    }
-    public function operator(): HasOne
-    {
-        return $this->hasOne(Operator::class, 'user_id', 'id');
+        return $this->hasOne(Teacher::class, 'user_id', 'user_id');
     }
 
     public function isSuperAdmin()

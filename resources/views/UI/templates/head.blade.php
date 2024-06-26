@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>{{ env('APP_NAME') }}</title>
+    <link rel="shortcut icon" href="{{ asset('myassets/img/LabJakAppsLogo.png') }}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{{ asset('sbadmin/css/styles.css') }}" rel="stylesheet" />
     <link href="{{ asset('myassets/css/font.css') }}" rel="stylesheet" />

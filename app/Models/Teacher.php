@@ -11,7 +11,9 @@ class Teacher extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = ['teacher_id'];
+
+    protected $primaryKey = 'teacher_id';
 
     /**
      * Get the user that owns the Teacher
@@ -40,6 +42,6 @@ class Teacher extends Model
      */
     public function contents(): HasMany
     {
-        return $this->hasMany(Content::class, 'teacher_id', 'id');
+        return $this->hasMany(Content::class, 'teacher_id', 'teacher_id');
     }
 }

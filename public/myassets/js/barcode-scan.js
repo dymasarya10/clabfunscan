@@ -89,6 +89,7 @@ const CloseResult = () => {
     if (camera.classList.contains("d-none")) {
         camera.classList.remove("d-none");
     }
+    html5QrcodeScanner.start();
 }
 
 function onScanSuccess(decodedText, decodedResult) {

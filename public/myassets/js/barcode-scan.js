@@ -60,6 +60,7 @@ const CloseResultContainer = () => {
     setTimeout(() => {
         altResultContainer.classList.add("d-none");
     }, 800);
+    html5QrcodeScanner.start();
 };
 
 
@@ -92,6 +93,7 @@ const CloseResult = () => {
 
 function onScanSuccess(decodedText, decodedResult) {
     OpenResultContainer(decodedText);
+    html5QrcodeScanner.stop();
 };
 html5QrcodeScanner.render(onScanSuccess);
 

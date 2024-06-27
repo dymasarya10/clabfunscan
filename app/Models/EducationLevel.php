@@ -23,14 +23,4 @@ class EducationLevel extends Model
     {
         return $this->hasOne(Teacher::class, 'education_level_id', 'id');
     }
-
-    /**
-     * Get the operator associated with the EducationLevel
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function operator(): HasOne
-    {
-        return $this->hasOne(Operator::class, 'education_level_id', 'id');
-    }
 }

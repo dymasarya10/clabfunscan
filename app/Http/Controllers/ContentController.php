@@ -71,7 +71,6 @@ class ContentController extends Controller
             'gambar_post.required' => 'Gambar wajib diisi',
             'gambar_post.max' => 'Batas maksimal ukuran gambar adalah 5mb'
         ]);
-
         if ($val->fails()) {
             return redirect()->back()->withErrors($val)->withInput();
         }
@@ -81,7 +80,6 @@ class ContentController extends Controller
                 return redirect()->back()->withErrors($val)->withInput();
             }
         }
-
         $input_data = $val->getData();
         $input_data['gambar_post'] = $request->file('gambar_post')->store($this->thePath);
         $content_codes = Content::with(['teacher'])->get('kode_qr');
@@ -96,7 +94,6 @@ class ContentController extends Controller
                 }
             }
         }
-
         $content_data = [
             'teacher_id' => auth()->user()->teacher->teacher_id,
             'kode_qr' => $qr_code,
@@ -104,9 +101,7 @@ class ContentController extends Controller
             'isi_konten' => $input_data['isi_konten_post'],
             'gambar' => $input_data['gambar_post'],
         ];
-
         $content = Content::create($content_data);
-
         return redirect(route('contents'))->with('success','Konten berhasil dibuat');
     }
 
@@ -136,11 +131,9 @@ class ContentController extends Controller
             'gambar_edit.max' => 'Batas maksimal ukuran gambar adalah 5mb',
             'gambar_edit.mimes' => 'File harus bertipe PNG'
         ]);
-
         if ($val->fails()) {
             return redirect()->back()->withErrors($val)->withInput();
         }
-
         foreach ($this->dangerous_tags as $key => $tag) {
             if (strpos($request->isi_konten_edit, $key) !== false) {
                 $val->errors()->add('isi_konten_edit','Input anda mengandung tag yang berbahaya : '.$tag);
@@ -150,7 +143,6 @@ class ContentController extends Controller
 
         $input_data = $val->getData();
         $content = Content::findOrFail(base64_decode($request->update_id));
-
         $img = "";
         if ($request->file('gambar_edit')) {
             if (Storage::exists($content->gambar)) {
@@ -161,15 +153,12 @@ class ContentController extends Controller
         } else {
             $img = $content->gambar;
         }
-
         $content_data = [
             'judul' => $input_data['judul_edit'],
             'gambar' => $img,
             'isi_konten' => $input_data['isi_konten_edit']
         ];
-
         $content->update($content_data);
-
         return redirect(route('contents'))->with('success','Konten berhasil diedit');
     }
 }

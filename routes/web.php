@@ -7,6 +7,7 @@ use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\EduLevelController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,4 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/contents/store', [ContentController::class, 'store'])->name('contents.store');
     Route::delete('/contents/destroy', [ContentController::class, 'destroy'])->name('contents.destroy');
     Route::put('/contents/put', [ContentController::class, 'put'])->name('contents.put');
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->can('notadmin');
+    Route::post('/profile/changepass', [ProfileController::class, 'changePass'])->name('changepass')->can('notadmin');
 });

@@ -24,7 +24,7 @@
             <div class="sb-sidenav-menu-heading">menu utama</div>
             @notSuperAdmin
             <a class="nav-link py-2 {{ $title === 'profil' ? 'active' : '' }}" style="--bs-nav-link-font-size: .9rem;"
-                href="">
+                href="{{ route('profile') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                 Profil
             </a>

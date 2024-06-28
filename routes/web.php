@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/creators/store', [CreatorController::class, 'store'])->name('creators.store');
         Route::delete('/creators/destroy', [CreatorController::class, 'destroy'])->name('creators.destroy');
         Route::put('/creators/put', [CreatorController::class, 'put'])->name('creators.put');
+        Route::put('/creators/changepass', [CreatorController::class, 'passDefault'])->name('changePASS');
 
         Route::get('/edulvls', [EduLevelController::class, 'index'])->name('edulevels');
         Route::post('/edulvls/store', [EduLevelController::class, 'store'])->name('storeedulevels');

@@ -21,6 +21,12 @@ const LoadConfirmData = (method,id = 0) => {
             message.innerText = "Apakah anda ingin menghapus data ini ?";
             deleteId.value = id;
             break;
+        case "gantipass":
+            message.innerText = "Apakah anda ingin mengganti menjadi password default ?"
+            if (document.getElementById("changepass_id")) {
+                document.getElementById("changepass_id").value = id;
+            }
+            break;
 
         default:
             break;
@@ -38,6 +44,11 @@ confirmModal.addEventListener('click', () => {
             break;
         case "delete":
             deleteForm.submit();
+            break;
+        case "gantipass":
+            if (document.getElementById("gantipassForm")) {
+                document.getElementById("gantipassForm").submit();
+            };
             break;
 
         default:

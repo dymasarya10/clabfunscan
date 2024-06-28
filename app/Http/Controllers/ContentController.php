@@ -66,7 +66,7 @@ class ContentController extends Controller
             'isi_konten_post' => 'required'
         ], [
             'judul_post.required' => 'Judul wajib diisi !',
-            'judul_post.max' => 'Batas maksimal karakter tercapai',
+            'judul_post.max' => 'Batas maksimal karakter tercapai (25 karakter)',
             'isi_konten_post' => 'Isi konten wajib diisi',
             'gambar_post.required' => 'Gambar wajib diisi',
             'gambar_post.max' => 'Batas maksimal ukuran gambar adalah 5mb'

@@ -70,6 +70,13 @@
                                                     Hapus
                                                 </a>
                                             </div>
+                                            <div class="col p-1">
+                                                <a class="btn btn-sm btn-info w-100" data-bs-toggle="modal"
+                                                    data-bs-target="#confirm_modal"
+                                                    onclick="LoadConfirmData('gantipass',{{ $creator->teacher_id }})">
+                                                    Reset Password
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -325,6 +332,11 @@
         @csrf
         @method('DELETE')
         <input type="hidden" name="id_creator_delete" id="delete_id">
+    </form>
+    <form action="{{ route('changePASS') }}" method="post" id="gantipassForm" class="d-none">
+        @csrf
+        @method('PUT')
+        <input type="hidden" name="id_creator_resetpass" id="changepass_id">
     </form>
     @include('UI.partials.confirm-modal')
     <script src="{{ asset('myassets/js/creator.js') }}"></script>

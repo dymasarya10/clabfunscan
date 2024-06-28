@@ -38,7 +38,7 @@ class CreatorController extends Controller
             'foto_post' => 'required|image|max:2048|dimensions:height=500,width=500|mimes:png'
         ], [
             'nama_pengguna_post.required' => 'Nama pengguna wajib diisi !',
-            'nama_pengguna_post.max' => 'Nama pengguna melebihi batas maksimal !',
+            'nama_pengguna_post.max' => 'Nama pengguna melebihi batas maksimal (100 Karakter) !',
             'nama_pengguna_post.regex' => 'Terdeteksi karakter asing',
             'nama_pengguna_post.unique' => 'Nama pengguna sudah ada !',
             'email_post.required' => 'Email wajib diisi !',
@@ -129,5 +129,19 @@ class CreatorController extends Controller
         $user->update($user_data);
         $creator->update($creator_data);
         return redirect(route('creators'))->with('success', 'Creator yang diubah: ' . $user->nama);
+    }
+
+    public function passDefault(Request $request)
+    {
+        $creator = Creator::with(['user','education_level'])->find($request->id_creator_resetpass);
+        $message = "Password masih tersimpan default";
+        if (!Hash::check("password", $creator->user->password)) {
+            $creator->user->update([
+                'password' => Hash::make("password")
+            ]);
+
+            $message = "Berhasil mengubah password default : password";
+        }
+        return redirect(route('creators'))->with('success', $message);
     }
 }

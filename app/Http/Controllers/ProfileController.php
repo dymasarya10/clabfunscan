@@ -20,10 +20,11 @@ class ProfileController extends Controller
     {
         $val = $request->validate([
             'oldPass' => 'required',
-            'newPass' => 'required'
+            'newPass' => 'required|min:8'
         ],[
             'oldPass.required' => 'Bidang ini wajib diisi',
-            'newPass.required' => 'Bidang ini wajib diisi'
+            'newPass.required' => 'Bidang ini wajib diisi',
+            'newPass.min' => 'Minimal 8 karakter'
         ]);
 
         if(Hash::check($request->oldPass, auth()->user()->getAuthPassword())){

@@ -9,6 +9,14 @@
                 </div>
             </div>
         @endif
+        @if ($errors->any())
+            <div class="col-12">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Gagal mengganti password silakan cek kembali form anda
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
         @if (session()->has('failed'))
             <div class="col-12">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -53,6 +61,14 @@
                                             : {{ auth()->user()->nama_pengguna }}
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>
+                                            Jenjang
+                                        </td>
+                                        <td class="text-uppercase">
+                                            : {{ auth()->user()->teacher->education_level->nama_jenjang }}
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <button onclick="ShowForm()" class="btn btn-primary mt-3">
@@ -73,12 +89,29 @@
                         @csrf
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Password Lama</label>
-                            <input type="password" class="form-control" id="exampleInputEmail1" name="oldPass"
-                                aria-describedby="emailHelp">
+                            <input type="password"
+                                class="form-control @error('oldPass')
+                                is-invalid
+                            @enderror"
+                                id="exampleInputEmail1" name="oldPass" aria-describedby="emailHelp">
+                            @error('oldPass')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password Baru</label>
-                            <input type="password" class="form-control" name="newPass" id="exampleInputPassword1">
+                            <input type="password"
+                                class="form-control @error('newPass')
+                                is-invalid
+                            @enderror"
+                                name="newPass" id="exampleInputPassword1">
+                            @error('newPass')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <button onclick="return confirm('Apakah anda yakin ?')" type="submit"
                             class="btn btn-primary">Ganti</button>

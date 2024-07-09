@@ -53,8 +53,8 @@ class CreatorController extends Controller
             'foto_post.required' => 'Foto wajib diisi !',
             'foto_post.max' => 'Ukuran maksimal file adalah 2mb',
             'foto_post.dimensions' => 'Dimensi foto harus 500x500 pixel',
-            'foto_post.image' => 'File harus berupa foto !',
-            'foto_post.mimes' => 'Hanya ekstensi PNG yang dapat diterima !',
+            'foto_post.image' => 'File harus berupa foto/gambar !',
+            'foto_post.mimes' => 'Hanya ekstensi .png yang dapat diterima !',
         ]);
         $user_val['nama_pengguna'] = strtolower($val['nama_pengguna_post']);
         $user_val['nama'] = $val['nama_post'];

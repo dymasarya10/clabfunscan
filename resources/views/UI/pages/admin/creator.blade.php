@@ -7,8 +7,12 @@
                 <strong>Sukses !</strong>
                 {{ session('success') }}
             @else
-                <strong>Gagal membuat data !</strong>
-                Harap cek kembali form anda
+                @if ($errors->has('error'))
+                    {{ $errors->first('error') }}
+                @else
+                    <strong>Gagal membuat data !</strong>
+                    Harap cek kembali form anda
+                @endif
             @endif
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -121,8 +125,8 @@
                                             is-invalid
                                         @enderror"
                                                         onchange="previewImage(event)" accept=".png">
-                                                        <div class="form-text fst-italic">Maks
-                                                            2mb</div>
+                                                    <div class="form-text fst-italic">Maks
+                                                        2mb</div>
                                                     @error('foto_post')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -304,7 +308,8 @@
                                     aria-label="Default select example" name="education_level_id_update">
                                     <option value="pilih">Pilih</option>
                                     @foreach ($edulvls as $edulvl)
-                                        <option class="FormOption" value="{{ base64_encode($edulvl->education_level_id) }}"
+                                        <option class="FormOption"
+                                            value="{{ base64_encode($edulvl->education_level_id) }}"
                                             {{ old('education_level_id_update') === base64_encode($edulvl->education_level_id) ? 'selected' : '' }}>
                                             {{ strtoupper($edulvl->nama_jenjang) }}
                                         </option>

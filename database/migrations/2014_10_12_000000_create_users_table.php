@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id('user_id');
             $table->string('email');
             $table->string('nama_pengguna',100)->unique();
-            $table->string('nama');
+            $table->string('nama',150);
             $table->string('foto');
-            $table->string('password');
+            $table->string('password',150);
             $table->string('peran',10);
             $table->timestamps();
         });

@@ -31,12 +31,15 @@ class CreatorController extends Controller
     {
         $val = $request->validate([
             'nama_pengguna_post' => 'required|regex:/^[a-zA-Z0-9_]+$/|unique:users,nama_pengguna|max:100',
-            'nama_post' => 'required|regex:/^[a-zA-Z, .]+$/',
+            'nama_post' => 'required|regex:/^[a-zA-Z, .]+$/|max:150',
             'email_post' => 'required|email',
-            'password_post' => 'required|min:8',
+            'password_post' => 'required|min:8|max:150',
             'education_level_id_post' => 'not_in:pilih',
             'foto_post' => 'required|image|max:2048|dimensions:height=500,width=500|mimes:png'
         ], [
+            'nama_post.required' => 'Nama wajib diisi !',
+            'nama_post.regex' => 'Format tidak sesuai !',
+            'nama_post.max' => 'Maksimal karakter 150 karakter',
             'nama_pengguna_post.required' => 'Nama pengguna wajib diisi !',
             'nama_pengguna_post.max' => 'Nama pengguna melebihi batas maksimal (100 Karakter) !',
             'nama_pengguna_post.regex' => 'Terdeteksi karakter asing',
@@ -45,6 +48,7 @@ class CreatorController extends Controller
             'email_post.email' => 'Harus menggunakan email yang valid !',
             'password_post.required' => 'Password wajib diisi !',
             'password_post.min' => 'Minimal 8 karakter',
+            'password_post.max' => 'Maksimal karakter 150 karakter',
             'education_level_id_post.not_in' => 'Silakan pilih jenjang',
             'foto_post.required' => 'Foto wajib diisi !',
             'foto_post.max' => 'Ukuran maksimal file adalah 2mb',
@@ -93,11 +97,14 @@ class CreatorController extends Controller
         $user = User::find($creator->user_id);
         $val = $request->validate([
             'nama_pengguna_update' => "required|unique:users,nama_pengguna,$user->user_id,user_id|regex:/^[a-zA-Z0-9_]+$/|max:100",
-            'nama_update' => 'required|regex:/^[a-zA-Z, .]+$/',
+            'nama_update' => 'required|regex:/^[a-zA-Z, .]+$/|max:150',
             'email_update' => 'required|email',
             'education_level_id_update' => 'not_in:pilih',
             'foto_update' => 'sometimes|file|max:2048|dimensions:height=500,width=500'
         ], [
+            'nama_update.required' => 'Nama wajib diisi !',
+            'nama_update.regex' => 'Format tidak sesuai',
+            'nama_update.max' => 'Maksimal karakter 150 karakter',
             'nama_pengguna_update.required' => 'Nama pengguna harus diisi !',
             'nama_pengguna_update.max' => 'Nama pengguna melebihi batas maksimal !',
             'nama_pengguna_update.unique' => "$request->nama_pengguna_update pengguna sudah terdaftar !",
@@ -142,6 +149,6 @@ class CreatorController extends Controller
 
             $message = "Berhasil mengubah password default : password";
         }
-        return redirect(route('creators'))->with('success', $message);
+        return redirect(route('creators'))->withErrors(['error' => 'Password sudah default']);
     }
 }

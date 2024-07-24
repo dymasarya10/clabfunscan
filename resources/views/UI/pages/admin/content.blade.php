@@ -201,7 +201,7 @@
                                     class="form-control @error('gambar_edit')
                                     is-invalid
                                 @enderror"
-                                    id="gambar_edit" name="gambar_edit" aria-describedby="emailHelp" accept=".png">
+                                    id="gambar_edit" name="gambar_edit" aria-describedby="emailHelp" accept=".png, .jpeg, .jpg">
                                 @error('gambar_edit')
                                     <div class="invalid-feedback">
                                         {{ $message }}

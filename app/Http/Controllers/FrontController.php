@@ -10,7 +10,6 @@ class FrontController extends Controller
 {
     public function index()
     {
-        return abort(500);
         $contents = Content::with(['teacher','teacher.user','teacher.education_level'])->get();
         return view('UI.pages.front.homepage',[
             'contents' => $contents

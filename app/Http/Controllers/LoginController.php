@@ -10,7 +10,6 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return abort(500, 'Internal Server Error');
         return view('UI.pages.login');
     }
 
